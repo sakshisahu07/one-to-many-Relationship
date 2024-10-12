@@ -18,4 +18,4 @@ const empSchema=new mongoose.Schema({
         require:true
     }
 })
-Module.exports=mongoose.model("employee",empSchema);
+module.exports=mongoose.model("employee",empSchema);
