@@ -18,8 +18,9 @@ const insertPage=async(req,res)=>{
     }
     
 }
-const displayPage=(req,res)=>{
-    res.send("<h1>displayed Employee records");
+const displayPage=async(req,res)=>{
+   const empdata=await employeeModel.find();
+    res.status(200).json(empdata);
 }
 
 module.exports={
