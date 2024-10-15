@@ -5,7 +5,7 @@ const empSchema=new mongoose.Schema({
         type:Number,
         require:true
     },
-    name:{
+    empname:{
         type:String,
         require:true
     },
