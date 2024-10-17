@@ -23,8 +23,21 @@ const displayPage=async(req,res)=>{
     res.status(200).json(empdata);
 }
 
+const searchPage=async(req,res)=>{
+    let{empno}=req.body;
+    const myData=await employeeModel.find({empno:empno})
+    console.log(myData)
+    //res.send(myData)
+}
+
+const updatePage=(req,res)=>{
+    res.send("updatedd")
+    
+}
 module.exports={
     homePage,
     insertPage,
-    displayPage
+    displayPage,
+    searchPage,
+    updatePage
 }

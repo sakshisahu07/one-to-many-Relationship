@@ -9,7 +9,7 @@ const empSchema=new mongoose.Schema({
         type:String,
         require:true
     },
-    designaton:{
+    designation:{
         type:String,
         require:false
     },

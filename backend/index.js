@@ -6,7 +6,7 @@ const mongoose=require("mongoose");
 require("dotenv").config();
 const employeeRoute=require("./routes/empRoute")
 
-mongoose.connect("mongodb://127.0.0.1:27017/SakshiMern").then(()=>{
+mongoose.connect(process.env.DBCON).then(()=>{
     console.log("mongodb successfully connected!!!")
 });
 const port=process.env.PORT || 3000

@@ -8,5 +8,8 @@ const employeeController=require("../controllers/empController")
 route.get("/home",employeeController.homePage)
 route.post("/insert",employeeController.insertPage)
 route.get("/display",employeeController.displayPage);
+route.post("/search",employeeController.searchPage);
+route.get("/update",employeeController.updatePage);
+
 
 module.exports=route;
