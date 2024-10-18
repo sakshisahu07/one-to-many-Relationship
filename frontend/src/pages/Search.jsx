@@ -9,7 +9,11 @@ const Search=()=>{
     const handleSubmit=()=>{
         let api="http://localhost:8000/employee/search";
         axios.post(api,{empno:empno}).then((res)=>{
-            setMydata(res.data)
+            setMydata(res.data);
+
+            if(res.data.length==0){
+              message.error("No Record found!!");
+            }
         })
     }
 

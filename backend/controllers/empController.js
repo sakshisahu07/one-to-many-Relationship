@@ -26,18 +26,32 @@ const displayPage=async(req,res)=>{
 const searchPage=async(req,res)=>{
     let{empno}=req.body;
     const myData=await employeeModel.find({empno:empno})
-    console.log(myData)
-    //res.send(myData)
+    //console.log(myData)
+    res.send(myData)
 }
 
-const updatePage=(req,res)=>{
-    res.send("updatedd")
+const updatePage=async(req,res)=>{
+    const Data=await employeeModel.find();
+    res.send(Data);
     
+}
+const editPage=async(req,res)=>{
+    const id=req.body.id;
+    const empdata=await employeeModel.findById(id);
+    res.send(empdata);
+}
+
+const deletePage=async(req,res)=>{
+    const myid=req.body.id;
+    const emplo=await employeeModel.findByIdAndDelete(myid);
+    res.send("Record Deleted")
 }
 module.exports={
     homePage,
     insertPage,
     displayPage,
     searchPage,
-    updatePage
+    updatePage,
+    editPage,
+    deletePage
 }
