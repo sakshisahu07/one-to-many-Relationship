@@ -46,6 +46,7 @@ const Insert=()=>{
       <Button variant="primary" type="submit" onClick={submitHandle}>
         Submit
       </Button>
+      
       </Form>
         </>
     )

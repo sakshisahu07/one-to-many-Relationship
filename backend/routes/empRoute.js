@@ -12,6 +12,9 @@ route.post("/search",employeeController.searchPage);
 route.get("/update",employeeController.updatePage);
 route.post("/edit",employeeController.editPage);
 route.post("/delete",employeeController.deletePage);
+route.post("/editsave",employeeController.editSave);
+
+
 
 
 

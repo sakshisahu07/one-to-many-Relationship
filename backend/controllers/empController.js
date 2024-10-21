@@ -16,7 +16,6 @@ const insertPage=async(req,res)=>{
     }catch(error){
         res.status(404).json("Mongo server not found!!")
     }
-    
 }
 const displayPage=async(req,res)=>{
    const empdata=await employeeModel.find();
@@ -46,6 +45,17 @@ const deletePage=async(req,res)=>{
     const emplo=await employeeModel.findByIdAndDelete(myid);
     res.send("Record Deleted")
 }
+
+const editSave=async(req,res)=>{
+    const{_id,empno,empname,designation,salary}=req.body;
+    const empdata=await employeeModel.findByIdAndUpdate(_id,{
+        empno:empno,
+        empname:empname,
+        designation:designation,
+        salary:salary
+    })
+    res.send("Data successfully updatedd!")
+}
 module.exports={
     homePage,
     insertPage,
@@ -53,5 +63,6 @@ module.exports={
     searchPage,
     updatePage,
     editPage,
-    deletePage
+    deletePage,
+    editSave
 }
