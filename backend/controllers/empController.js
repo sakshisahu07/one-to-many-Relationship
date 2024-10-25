@@ -32,18 +32,18 @@ const searchPage=async(req,res)=>{
 const updatePage=async(req,res)=>{
     const Data=await employeeModel.find();
     res.send(Data);
-    
-}
-const editPage=async(req,res)=>{
-    const id=req.body.id;
-    const empdata=await employeeModel.findById(id);
-    res.send(empdata);
 }
 
 const deletePage=async(req,res)=>{
     const myid=req.body.id;
     const emplo=await employeeModel.findByIdAndDelete(myid);
     res.send("Record Deleted")
+}
+
+const editPage=async(req,res)=>{
+    const id=req.body.id;
+    const empdata=await employeeModel.findById(id);
+    res.send(empdata);
 }
 
 const editSave=async(req,res)=>{
@@ -56,6 +56,23 @@ const editSave=async(req,res)=>{
     })
     res.send("Data successfully updatedd!")
 }
+const loginPage=async()=>{
+    const {email,password}=req.body;
+    const empdata=await employeeModel.find({email:email});
+    if(empdata.length<1)
+    {
+        res.status(401).send("Invalid Email");
+    }
+    else{
+        if(empdata[0].password!=password)
+        {
+            res.status(401).send("Invalid Credential");
+        }
+        else{
+            res.status(200).send(empdata);
+        }
+    }
+}
 module.exports={
     homePage,
     insertPage,
@@ -64,5 +81,6 @@ module.exports={
     updatePage,
     editPage,
     deletePage,
-    editSave
+    editSave,
+    loginPage
 }

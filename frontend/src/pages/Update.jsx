@@ -25,9 +25,9 @@ const Update=()=>{
       loadData();
     })
   }
-    const myrecEdit=(id)=>{
-      navigate(`/edit`);
-    }
+  const myrecEdit=(id)=>{
+    navigate(`/edit/${id}`);
+  }
         const ans=mydata.map((key)=>{
           return(
             <>

@@ -19,14 +19,14 @@ const Edit=()=>{
         loadData();
     },[])
 
-    const handleInput=()=>{  
+    const handleInput=(e)=>{  
         let name=e.target.value
         let value=e.target.value;
-        setMydata(values=>({...values,[name]:values}));
+        setMydata(values=>({...values,[name]:value}));
         console.log(mydata);
     }
     const handleSubmit=()=>{
-        let api="http://localhost:8000/employee/edit";
+        let api="http://localhost:8000/employee/editsave";
         axios.post(api,mydata).then((res)=>{
             alert("Data Updates")
         })
@@ -43,8 +43,9 @@ const Edit=()=>{
         Edit Salary<input type="text" name="salary" value={mydata.salary}onChange={handleInput} />
         <br></br>
         <button onClick={handleSubmit}>Edit Save</button>
-
         </>
     )
 }
 export default Edit;
+
+
