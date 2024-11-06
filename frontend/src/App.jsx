@@ -23,16 +23,11 @@ const App=()=>{
           <Route path="update" element={<Update/>}/>
           <Route path="edit" element={<Edit/>}/>
           <Route path="login" element={<Login/>}/>
-
-
-
-
-          
-
-
           </Route>
         </Routes>
       </BrowserRouter>
+      <button>Upload</button>
+      <button>Photos</button>
      
     </>
   )

@@ -14,6 +14,14 @@ app.use(cors());
 //body parser middleware
 app.use(bodyparser.urlencoded({ extended:true}))
 app.use(bodyparser.json())
+
+app.get("/upload",(req,res)=>{
+    res.send("Uploaded")
+})
+
+app.get("*",(req,res)=>{
+    console.log("path not found")
+})
 app.use("/employee",employeeRoute)
 app.listen(8000,()=>{
     console.log("server runs on this port")

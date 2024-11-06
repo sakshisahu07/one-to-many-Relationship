@@ -56,7 +56,7 @@ const editSave=async(req,res)=>{
     })
     res.send("Data successfully updatedd!")
 }
-const loginPage=async()=>{
+const loginPage=async(req,res)=>{
     const {email,password}=req.body;
     const empdata=await employeeModel.find({email:email});
     if(empdata.length<1)
