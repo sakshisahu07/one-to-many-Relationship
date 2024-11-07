@@ -15,13 +15,25 @@ app.use(cors());
 app.use(bodyparser.urlencoded({ extended:true}))
 app.use(bodyparser.json())
 
-app.get("/upload",(req,res)=>{
-    res.send("Uploaded")
+app.get("/home",(req,res)=>{
+    try {
+        let a=10;
+        let b=2;
+        if(b==0){
+            throw new Error("Aap zero se divide na kare pls!!")
+        }
+        let c=a/b;
+        res.send({ans:c});
+    } catch (error) {
+       
+    }
 })
 
-app.get("*",(req,res)=>{
-    console.log("path not found")
+app.get("/about",(req,res)=>{
+    res.send("About us!!")
 })
+
+
 app.use("/employee",employeeRoute)
 app.listen(8000,()=>{
     console.log("server runs on this port")
