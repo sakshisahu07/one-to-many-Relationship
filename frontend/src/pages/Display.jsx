@@ -1,47 +1,46 @@
 
-
-
-
-
 import { useState,useEffect } from "react";
 import axios from "axios";
+import Table from 'react-bootstrap/Table';
 const Display=()=>{
-    const [mydata,setMydata]=useState([]);
-    const loadData=async()=>{
-        let api="http://localhost:8000/employee/display";
-        const response=await axios.get(api);
-        setMydata(response.data);
-        console.log(response.data)
+    const[mydata,seMydata]=useState([]);
+
+    const loadData=()=>{
+        let api="http://localhost:8080/employee/display";
+        axios.get(api).then((res)=>{
+            seMydata(res.data)
+        })
     }
     useEffect(()=>{
-        loadData();
+        loadData()
     },[])
 
     const ans=mydata.map((key)=>{
         return(
             <>
             <tr>
-                <td>{key.empno}</td>
-                <td>{key.empname}</td>
-                <td>{key.designation}</td>
-                <td>{key.salary}</td>
+                <td>{key.firstname}</td>
+                <td>{key.secondname}</td>
+                <td>{key.userid.username}</td>
+                <td>{key.userid.email}</td>
             </tr>
             </>
         )
     })
     return(
-        <>
-        <h1>Display Employee Record</h1>
-        <table>
-            <tr>
-                <th>Employee No.</th>
-                <th>Employee Name</th>
-                <th>Designation</th>
-                <th>Salary</th>
-            </tr>
-            {ans}
-        </table>
-        </>
+       <>
+       
+       <table>
+        <tr>
+            <th>FirstName</th>
+            <th>Second Name</th>
+            <th>USer id</th>
+            <th>Email</th>
+        </tr>
+        {ans}
+       </table>
+       </>
+      
     )
 }
 export default Display;

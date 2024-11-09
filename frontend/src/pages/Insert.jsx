@@ -1,53 +1,49 @@
-
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useState} from 'react';
+import { useState } from 'react';
 import axios from "axios";
 const Insert=()=>{
-  const [input,setInput]=useState({});
-  const handleInput=(e)=>{
-    let name=e.target.name;
-    let value=e.target.value;
-    setInput(values=>({...values,[name]:value}));
-    console.log(input);
-  }
+const[input,setInput]=useState({});
 
-  const submitHandle=(e)=>{
-    e.preventDefault();
-    let api="http://localhost:8000/employee/insert";
-    axios.post(api,input).then((res)=>{
-      alert("data save!!!");
-      console.log(res);
-    })
-  }
+    const handleInput=(e)=>{
+        let name=e.target.name
+        let value=e.target.value
+        setInput(values=>({...values,[name]:value}))
+
+    }
+        const handleSubmit=()=>{
+            let api="http://localhost:8080/employee/insert";
+            axios.post(api,input).then((res)=>{
+                console.log(res);
+                alert("Data Save!!!");
+            })
+        }
+    
     return(
         <>
-        <h1>Insert Employee Record</h1>
-        <Form className='formSize'>
+        <h1>Insert PAGE</h1>
+        <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Enter Employee Number</Form.Label>
-        <Form.Control type="text" name="eno" value={input.eno} onChange={handleInput} /> 
+        <Form.Label>Email username</Form.Label>
+        <Form.Control type="text" name='username' value={input.username} onChange={handleInput} />
       </Form.Group>
-
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Enter Employee Name</Form.Label>
-        <Form.Control type="text" name="name" value={input.name} onChange={handleInput} />
+        <Form.Label>Email email</Form.Label>
+        <Form.Control type="email" name='email' value={input.email} onChange={handleInput} />
       </Form.Group>
-
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Enter Employee Designation</Form.Label>
-        <Form.Control type="text" name="designation" value={input.designation} onChange={handleInput} />
+        <Form.Label>Email Firstname</Form.Label>
+        <Form.Control type="text"name='fname' value={input.fname} onChange={handleInput} />
       </Form.Group>
-
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Enter Employee Salary</Form.Label>
-        <Form.Control type="text"  name="salary" value={input.salary} onChange={handleInput}/>
-      </Form.Group>
-      <Button variant="primary" type="submit" onClick={submitHandle}>
+        <Form.Label>Email Secondname</Form.Label>
+        <Form.Control type="text"  name='sname' value={input.sname} onChange={handleInput} />
+      </Form.Group>     
+      <Button onClick={handleSubmit} variant="primary" type="submit">
         Submit
       </Button>
-      
-      </Form>
+    </Form>
+        
         </>
     )
 }
