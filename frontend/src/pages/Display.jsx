@@ -30,15 +30,20 @@ const Display=()=>{
     return(
        <>
        
-       <table>
+       <Table striped bordered hover>
+      <thead>
         <tr>
-            <th>FirstName</th>
-            <th>Second Name</th>
-            <th>USer id</th>
-            <th>Email</th>
+          
+          <th>First Name</th>
+          <th>Second Name</th>
+          <th>Userid</th>
+          <th>Email</th>
         </tr>
+      </thead>
+      <tbody>
         {ans}
-       </table>
+        </tbody>
+        </Table>
        </>
       
     )
