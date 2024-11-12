@@ -1,23 +1,25 @@
-
-
-const express=require("express");
+const express = require("express");
 const app=express();
 const bodyparser = require('body-parser')
-const cors=require("cors");
-const mongoose=require("mongoose");
-const employeeRoute=require("./routes/empRoute")
+const cors= require("cors");
+const mongoose= require("mongoose");
+const bookRoute= require("./routes/bookRoute");
 require("dotenv").config();
 mongoose.connect(process.env.DBCONNECTION).then(()=>{
-    console.log("MongoDB successfully connected!!")
+    console.log("DB Connected Succesfully!");
 })
+
+
+
 const port=process.env.PORT || 3000
 app.use(cors());
 // Body-parser middleware
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
-app.use("/employee",employeeRoute)
 
-app.listen(8080,(req,res)=>{
-    console.log("server Runs on this port")
+app.use("/books", bookRoute);
+
+
+app.listen(port, ()=>{
+    console.log(`server run on ${port}!!!`);
 })
-

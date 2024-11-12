@@ -1,51 +1,74 @@
-
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import Table from 'react-bootstrap/Table';
+import {useNavigate} from "react-router-dom"; 
+
 const Display=()=>{
-    const[mydata,seMydata]=useState([]);
+ const [mydata, setMydata]= useState([]);
+  const navigate = useNavigate();
+ const loadData=()=>{
+  let api="http://localhost:8080/books/booksdisplay";
+  axios.get(api).then((res)=>{
+    console.log(res.data);
+    setMydata(res.data);
+  })
+ }
 
-    const loadData=()=>{
-        let api="http://localhost:8080/employee/display";
-        axios.get(api).then((res)=>{
-            seMydata(res.data)
-        })
-    }
-    useEffect(()=>{
-        loadData()
-    },[])
 
-    const ans=mydata.map((key)=>{
-        return(
-            <>
-            <tr>
-                <td>{key.firstname}</td>
-                <td>{key.secondname}</td>
-                <td>{key.userid.username}</td>
-                <td>{key.userid.email}</td>
+
+
+useEffect(()=>{
+  loadData();
+}, [])
+
+const addmoreBook=(id)=>{
+ 
+   navigate(`/addmorebook/${id}`);
+}
+
+
+let i=0;
+const ans= mydata.map((key)=>{
+  i++;
+  return(
+    <>
+       <tr>
+        <td> {i}  </td>
+        <td> {key.author_name} </td>
+        <td>
+         { key.author_books.map((key1)=>{
+            return(
+              <>
+                 <p> Name : {key1.book_name}, - Price {key1.book_price} </p>
+              </>
+            )
+         })  }
+           </td>
+
+           <td> 
+
+            <button onClick={()=>{addmoreBook(key._id)}}> Add more Book</button>
+           </td>
+       </tr>
+    
+    </>
+  )
+})
+
+
+return(
+        <>
+          <h1> Display Page</h1>
+          <table>
+            <tr> 
+              <th> Sno</th>
+              <th> name</th>
+              <th> Book Detail</th>
+              <th>  </th>
             </tr>
-            </>
-        )
-    })
-    return(
-       <>
-       
-       <Table striped bordered hover>
-      <thead>
-        <tr>
-          
-          <th>First Name</th>
-          <th>Second Name</th>
-          <th>Userid</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        {ans}
-        </tbody>
-        </Table>
-       </>
-      
+            {ans}
+          </table>
+        </>
     )
 }
+
 export default Display;
